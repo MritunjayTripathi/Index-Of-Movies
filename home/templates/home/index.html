@@ -1,0 +1,103 @@
+{% extends 'home/base.html' %}
+
+{% block title %} Zmovies {% endblock %}
+
+{% block nav-home %}active{% endblock %}
+
+{% block body %}
+
+
+
+
+    <div class="container  outer-container">
+
+        <h6 class="col-2 text-white heading-bar"><strong>Most&nbspWatched&nbsp:-<br></strong></h6>
+
+        <div class="ctn">
+            {% for featured in featured_videos %}
+                <div class="img-ctn ">
+                    {% if featured.video_type == "movie" %}
+                        <a href="{% url 'movies:detail' featured.video_name %}"><img class="img"
+                                                                                        src="{{ featured.video_icon }}"
+                                                                                        alt="dsf"/></a>
+                        {% else %}
+                        <a href="{% url 'tv_series:detail' featured.video_name %}"><img class="img"
+                                                                                        src="{{ featured.video_icon }}"
+                                                                                        alt="dsf"/></a>
+                    {% endif %}
+                      <div class="container-fluid text-white small element_title-index" style="white-space: nowrap;overflow: hidden;text-overflow:ellipsis;">
+                {{ featured.video_name }}
+                </div>
+                </div>
+
+
+            {% endfor %}
+
+        </div>
+
+
+    </div>
+
+
+
+
+    <div class="container outer-container">
+
+        <h6 class="col-2 text-white heading-bar"><strong>FEATURED&nbspMOVIES&nbsp:-<br></strong></h6>
+
+
+        <div class="ctn">
+            {% for movie in movies %}
+                <div class="img-ctn ">
+                    <a href="{% url 'movies:detail' movie.movie_name %}"><img class="img" src="{{ movie.movie_icon }}"
+                                                                              alt="dsf"/></a>
+                     <div class="container-fluid text-white small element_title-index" style="white-space: nowrap;overflow: hidden;text-overflow:ellipsis;">
+                {{ movie.movie_name }}
+                </div>
+                </div>
+
+
+            {% endfor %}
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <div class="container  outer-container">
+
+        <h6 class="col-2 text-white heading-bar"><strong>FEATURED&nbspTV&nbspShows&nbsp:-<br></strong></h6>
+
+
+        <div class="ctn">
+            {% for tvseries in tv_series %}
+                <div class="img-ctn ">
+                    <a href="{% url 'tv_series:detail' tvseries.tvseries_name %}"><img class="img"
+                                                                                       src="{{ tvseries.tvseries_icon }}"
+                                                                                       alt="dsf"/></a>
+                    <h6 class=" text-white small text-center ">{{ tvseries.tvseries_name }}</h6>
+
+                </div>
+
+
+            {% endfor %}
+
+        </div>
+
+
+    </div>
+
+
+
+    <footer style="text-align: center">
+        <h1>Zmovies</h1>
+    </footer>
+
+{% endblock %}
+
+

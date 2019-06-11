@@ -1,0 +1,109 @@
+{% extends 'home/base.html' %}
+
+{% block title %} Zmovies {% endblock %}
+
+{% block body %}
+
+
+
+
+
+
+
+
+
+    <div class="container outer-container">
+
+        <h6 class="col-2 text-white heading-bar"><strong>MOVIES&nbsp:-<br></strong></h6>
+
+
+        <div class="ctn">
+            {% if match_movies %}
+                {% for movie in match_movies %}
+                    <div class="img-ctn ">
+                        <a href="{% url 'movies:detail' movie.movie_name %}"><img class="img"
+                                                                                  src="{{ movie.movie_icon }}"
+                                                                                  alt="dsf"/></a>
+                        <div class="container-fluid text-white small element_title-index"
+                             style="white-space: nowrap;overflow: hidden;text-overflow:ellipsis;">
+                            {{ movie.movie_name }}
+                        </div>
+
+                    </div>
+
+
+                {% endfor %}
+            {% else %}
+                <h5 class="jumbotron bg-dark text-white">NO Movies matched</h5>
+
+            {% endif %}
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <div class="container  outer-container">
+
+        <h6 class="col-2 text-white heading-bar"><strong>TV&nbspShows&nbsp:-<br></strong></h6>
+
+
+        <div class="ctn">
+            {% if match_tv_series %}
+                {% for tvseries in match_tv_series %}
+                    <div class="img-ctn ">
+                        <a href="{% url 'tv_series:detail' tvseries.tvseries_name %}"><img class="img"
+                                                                                           src="{{ tvseries.tvseries_icon }}"
+                                                                                           alt="dsf"/></a>
+                        <div class="container-fluid text-white small element_title-index"
+                             style="white-space: nowrap;overflow: hidden;text-overflow:ellipsis;">
+                            {{ tvseries.tvseries_name }}
+                        </div>
+
+                    </div>
+
+
+                {% endfor %}
+
+            {% else %}
+                <h5 class="jumbotron bg-dark text-white">NO TV Shows matched</h5>
+
+            {% endif %}
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="jumbotron text-center">
+        <h2>KEEP SUPPORTING US</h2>
+    </div>
+
+    <footer style="text-align: center">
+        <h1>Zmovies</h1>
+    </footer>
+
+{% endblock %}
+
+
+
+
+
+
+

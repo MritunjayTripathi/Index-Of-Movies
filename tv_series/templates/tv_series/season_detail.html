@@ -1,0 +1,54 @@
+{% extends 'home/base.html' %}
+
+{% block title %} {{ movie.movie_name }} {% endblock %}
+
+{% block body %}
+
+
+
+
+
+
+    <div class="overflow-auto text-center  p " style="background-color: #121212">
+
+
+        <div class="container col-sm-2  float-left text-center lc">
+            <img src="{{ series.tvseries_icon }}" style="width:100%;padding-top: 1vw">
+
+
+            <p class="box">{{ series }}</p>
+            <p class="box">IMDB={{ tv_series_season.i_m_d_b }}</p>
+            <p class="box">Release Year: {{ tv_series_season.release_year }}</p>
+            <p class="last_box box ">Lang: {{ series.lang }}</p>
+
+
+        </div>
+
+        <div class=" container col-sm-10 text-white float-right overflow-auto rc">
+            <h3 class="element_title-detail" style="margin-bottom: 3vw"><strong>{{ tv_series_season }}</strong></h3>
+
+
+
+            {% if tv_series_season.episode_set.all %}
+
+                {% for episode in tv_series_season.episode_set.all %}
+                    <a href="{% url 'tv_series:detailEpisode' series tv_series_season.season_no episode %}">
+                        <div class="season_no_box">
+                            <p style="color: #292b2c;font-size: large"><strong><span style="float: left;margin-left: 3vw">ep-{{ forloop.counter }} :</span> {{ episode }}</strong></p>
+                        </div>
+                    </a>
+                {% endfor %}
+
+            {% else %}
+
+                <h1>No Episode Added</h1>
+            {% endif %}
+
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,47 @@
+{% extends 'home/base.html' %}
+
+{% block title %} {{ movie.movie_name }} {% endblock %}
+
+{% block body %}
+
+    <!-- outer Container-->
+
+
+
+
+	<div class="overflow-auto text-center p " style="background-color: #121212">
+
+
+	    <div class="container col-sm-2  float-left text-center lc">
+	    	<img src="{{ tv_series.tvseries_icon}}" style="width:100%;padding-top: 1vw">
+
+
+		    <p class="box">{{ tv_series.tvseries_name }}</p>
+		    <p class="box" >IMDB={{ tv_series.i_m_d_b }}</p>
+		    <p class="box" >Release Year: {{ tv_series.release_year }}</p>
+		    <p class="last_box box " >Lang: {{ tv_series.lang }}</p>
+
+
+    	</div>
+
+    	<div class=" container col-sm-10 text-white float-right overflow-auto rc">
+    	<h3 class="element_title-detail" style="margin-bottom: 3vw;color: white"><strong>{{ tv_series.tvseries_name }}</strong></h3>
+
+		{% for season in tv_series.season_set.all %}
+                        <div class="season_no_box">
+                            <a href="{% url 'tv_series:detailSeason' info season.season_no %}">
+                                <p style="color: #292b2c;font-size: large"><strong>Season</strong> {{ season.season_no }}</p></a>
+                        </div>
+                    {% endfor %}
+
+   		</div>
+    </div>
+
+
+
+
+
+{% endblock %}
+
+
+

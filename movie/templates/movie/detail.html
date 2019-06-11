@@ -1,0 +1,108 @@
+{% extends 'home/base.html' %}
+
+{% block title %} {{ movie.movie_name }} {% endblock %}
+
+{% block body %}
+
+
+
+
+
+
+
+    <div class="overflow-auto text-center  p " style="background-color: #121212">
+
+
+        <div class="container col-sm-2  float-left text-center lc">
+            <img src="{{ movie.movie_icon }}" style="width:100%;padding-top: 1vw">
+
+
+            <p class="box">{{ movie.movie_name }}</p>
+            <p class="box">IMDB={{ movie.i_m_d_b }}</p>
+            <p class="box">Release Year:{{ movie.release_year }}</p>
+            <p class="last_box box ">Lang: {{ movie.lang }}</p>
+
+
+        </div>
+
+        <div class=" container col-sm-10 text-white float-right overflow-auto rc">
+            <h3 class="element_title-detail" style="margin-bottom: 3vw"><strong>{{ movie.movie_name }}</strong><br></h3>
+
+            <p>
+                This movie is awesome dude ,really bro
+                This movie is awesome dude ,really bro
+                This movie is awesome dude ,really bro
+                This movie is awesome dude ,really bro
+                This movie is awesome dude ,really bro
+            </p>
+
+
+
+            <div class="dropdown">
+                <button id="drop" onclick="myFunction()" class="dropbtn"><i class="material-icons"  style="color: black">touch_app</i>&nbsp;Quality :</button>
+                <div id="myDropdown" class="dropdown-content">
+
+                    {% if movie.movie_download_link_1080 != "#" %}
+                        <a href="#"
+                           onclick="return update_link({{ movie.movie_download_link_1080 }},1080);">1080</a>
+                    {% endif %}
+                    {% if movie.movie_download_link_720 != "#" %}
+                        <a href="#" onclick="update_link({{ movie.movie_download_link_720 }},720);return false;">720</a>
+                    {% endif %}
+                    {% if movie.movie_download_link_480 != "#" %}
+                        <a href="#" onclick="update_link({{ movie.movie_download_link_480 }},480);return false;">480</a>
+                    {% endif %}
+                    {% if movie.movie_download_link_other != "#" %}
+                        <a href="#"
+                           onclick="update_link({{ movie.movie_download_link_other }},other);return false;">{{ movie.movie_download_link_other }}other</a>
+                    {% endif %}
+                </div>
+            </div>
+
+
+            <a id="d" href="#" >
+
+                <button id="download" class="floating_button">
+                    <i class="material-icons nav-icon">file_download</i>&nbsp;<emp>Download</emp>
+                </button>
+            </a>
+
+
+        </div>
+
+    </div>
+
+
+
+
+    <script>
+
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+
+        function update_link(link, quality) {
+            document.getElementById("d").href = link;
+            document.getElementById("drop").innerHTML = "Quality " + quality;
+
+        }
+
+    </script>
+
+
+
+{% endblock %}

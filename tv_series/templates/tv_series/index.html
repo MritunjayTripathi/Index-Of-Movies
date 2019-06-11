@@ -1,0 +1,85 @@
+{% extends 'home/base.html' %}
+
+{% block title %} Zmovies {% endblock %}
+{% block nav-tv_series %}active{% endblock %}
+
+{% block body %}
+
+
+    <!--
+      <div class="container outer-container">
+
+        <h6 class="col-2 text-white heading-bar"><strong>Featured&nbsp:-<br></strong></h6>
+
+
+        <div class="ctn">
+            {% for featured in featured_tvshow %}
+                <div class="img-ctn ">
+                    <a href="{% url 'tv_series:detail' featured.tvseries_name %}"><img class="img"
+                                                                                    src="{{ featured.tvseries_icon }}"
+                                                                                    alt="dsf"/></a>
+                       <div class="container-fluid text-white small element_title-index" style="white-space: nowrap;overflow: hidden;text-overflow:ellipsis;">
+                {{ featured.tvseries_name }}
+                </div>
+                </div>
+
+
+            {% endfor %}
+
+        </div>
+
+
+    </div>
+    -->
+
+
+
+    <div class="container outer-container">
+
+        <h6 class="col-2 text-white heading-bar"><strong>TV&nbspShows&nbsp:-<br></strong></h6>
+
+
+        <div class="ctn">
+            {% for tvseries in tv_series %}
+                <div class="img-ctn ">
+                    <a href="{% url 'tv_series:detail' tvseries.tvseries_name %}"><img class="img"
+                                                                                       src="{{ tvseries.tvseries_icon }}"
+                                                                                       alt="dsf"/></a>
+                   <div class="container-fluid text-white small element_title-index" style="white-space: nowrap;overflow: hidden;text-overflow:ellipsis;">
+                       {{ tvseries.tvseries_name }}
+                </div>
+
+                </div>
+
+
+            {% endfor %}
+
+        </div>
+
+
+
+        <ul class="pagination justify-content-center" style="padding-bottom: 53px">
+            {% if hide1 %}
+                <li class="page-item"><a class="page-link page-link-class " href="{% url 'movies:index' previous_page_no %}">Previous</a></li>
+                <li class="page-item"><a class="page-link page-link-class" href="{% url 'movies:index'  previous_page_no  %}">{{ previous_page_no }}</a></li>
+            {% endif %}
+
+            <li class="page-item  active"><a class="page-link page-link-class" href="#">{{ page_no }}</a></li>
+
+            {% if hide2 %}
+                <li class="page-item"><a class="page-link page-link-class" href="{% url 'movies:index'  next_page_no  %}">{{ next_page_no }}</a></li>
+                <li class="page-item"><a class="page-link page-link-class" href="{% url 'movies:index'  next_page_no  %}">Next</a></li>
+            {% endif %}
+        </ul>
+
+    </div>
+
+
+
+    <footer style="text-align: center">
+        <h1>Zmovies</h1>
+    </footer>
+
+{% endblock %}
+
+

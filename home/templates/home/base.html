@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style1/bootstrap-reboot.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style1/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style1/bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'home/detail_style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'home/index_style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'home/base.css' %}"/>
+
+    <title>{% block title %}Page Title{% endblock %}</title>
+    <style>
+
+
+    </style>
+</head>
+<body class="body-class">
+
+
+<nav class="navbar navbar-exp`and-md  navbar-dark navbar-class ">
+    <a class="navbar-brand" href="{% url 'home:index' %}" style="font-size: larger"><strong>Zmovies</strong></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="collapsibleNavbar">
+        <ul class="navbar-nav ">
+
+            <li class="nav-item ">
+
+                <a class=" nav-link {% block nav-home %}{% endblock %}" href="{% url 'home:index' %}">
+                    <i class="material-icons nav-icon">home</i>&nbsp;Home</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link {% block nav-movies %}{% endblock %}" href="{% url 'movies:index' 1 %}">
+                    <i class="material-icons nav-icon">movie</i>&nbsp;Movies</a>
+            </li>
+            <li class="nav-item  {% block nav-tv_series %}{% endblock %}">
+                <a class="nav-link " href="{% url 'tv_series:index' 1 %}"><i class="material-icons nav-icon">live_tv</i>&nbsp;Tv-Series</a>
+            </li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right search-bar">
+            <form class="form-inline fa row4  " method="post" action="{% url 'home:search' %}">
+                {% csrf_token %}
+                <input type="text" name='srh' class="form-control mr-sm-2 " required placeholder="Search">
+                <button class="btn btn-secondary" type="submit">Search</button>
+            </form>
+        </ul>
+
+    </div>
+
+
+</nav>
+<br>
+
+{% block body %}
+{% endblock %}
+
+</body>
+</html>
+
